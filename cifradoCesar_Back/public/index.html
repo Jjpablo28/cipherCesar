@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cifrado César</title>
+</head>
+<body>
+<h1>Probar cifrado César</h1>
+
+<input id="texto" type="text" placeholder="Texto">
+<input id="desplazamiento" type="number" placeholder="Desplazamiento">
+<select id="modo">
+    <option value="encriptar">Encriptar</option>
+    <option value="desencriptar">Desencriptar</option>
+</select>
+<button onclick="enviar()">Enviar</button>
+
+<h2>Resultado:</h2>
+<pre id="resultado"></pre>
+
+<script>
+    async function enviar() {
+        const texto = document.getElementById("texto").value;
+        const desplazamiento = parseInt(document.getElementById("desplazamiento").value, 10);
+        const modo = document.getElementById("modo").value;
+
+        const resp = await fetch("http://localhost:3000/api/cipher", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ texto, desplazamiento, modo })
+        });
+
+        const data = await resp.json();
+        document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
+    }
+</script>
+</body>
+</html>
