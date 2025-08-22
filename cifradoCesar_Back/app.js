@@ -1,7 +1,7 @@
 var express = require("express");
 var path = require("path");
 var logger = require("morgan");
-var cors = require("cors"); // 👈 importa cors
+var cors = require("cors");
 
 var cipherRouter = require("./routes/cipher");
 
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Habilitar CORS para todas las IPs y dominios
-app.use(cors()); // 👈 ahora acepta peticiones desde cualquier URL
+app.use(cors()); //  ahora acepta peticiones desde cualquier URL
 
 // Si quieres restringirlo solo a ciertos orígenes, usa:
 // app.use(cors({ origin: ["http://localhost:4200", "http://miapp.com"] }));

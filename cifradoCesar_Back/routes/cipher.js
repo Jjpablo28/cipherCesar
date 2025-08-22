@@ -23,9 +23,9 @@ function cesar(text, shift) {
         .join("");
 }
 
-// 🔐 Encriptar (POST → /api/cipher/encriptar)
+// Encriptar (POST → /api/cipher/encriptar)
 router.post("/encriptar", (req, res) => {
-    console.log("📥 Body recibido en /encriptar:", req.body); // 👀 LOG del body
+    console.log("Body recibido en /encriptar:", req.body);
 
     const { palabra, clave } = req.body;
     const claveNum = parseInt(clave, 10);
@@ -38,14 +38,14 @@ router.post("/encriptar", (req, res) => {
 
     const resultado = cesar(palabra, claveNum);
 
-    console.log(`✅ Encriptación: "${palabra}" con clave ${claveNum} → "${resultado}"`);
+    console.log(`Encriptación: "${palabra}" con clave ${claveNum} → "${resultado}"`);
 
     res.json({ original: palabra, clave: claveNum, encriptado: resultado });
 });
 
-// 🔓 Desencriptar (POST → /api/cipher/desencriptar)
+
 router.post("/desencriptar", (req, res) => {
-    console.log("📥 Body recibido en /desencriptar:", req.body); // 👀 LOG del body
+    console.log("Body recibido en /desencriptar:", req.body);
 
     const { palabra, clave } = req.body;
     const claveNum = parseInt(clave, 10);
@@ -58,14 +58,14 @@ router.post("/desencriptar", (req, res) => {
 
     const resultado = cesar(palabra, -claveNum);
 
-    console.log(`🔓 Desencriptación: "${palabra}" con clave ${claveNum} → "${resultado}"`);
+    console.log(`Desencriptación: "${palabra}" con clave ${claveNum} → "${resultado}"`);
 
     res.json({ original: palabra, clave: claveNum, desencriptado: resultado });
 });
 
 // Endpoint GET de prueba (para navegador)
 router.get("/test", (req, res) => {
-    res.json({ mensaje: "Ruta de Cifrado César activa 🚀" });
+    res.json({ mensaje: "Ruta de Cifrado César activa" });
 });
 
 module.exports = router;
